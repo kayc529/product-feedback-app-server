@@ -3,7 +3,10 @@ require('express-async-errors');
 
 const cors = require('cors');
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000/',
+    'https://product-feedback-app-k.netlify.app/',
+  ],
   credentials: true, //included credentials as true
 };
 const express = require('express');
