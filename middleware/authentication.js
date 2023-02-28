@@ -9,7 +9,6 @@ const authenticateUser = async (req, res, next) => {
     //meaning both access and refresh tokens haven't expired
     if (accessToken) {
       const payload = isTokenValid(accessToken);
-      console.log('payload:', payload);
       req.user = payload.user;
       return next();
     }
@@ -17,7 +16,6 @@ const authenticateUser = async (req, res, next) => {
     //if access token is absent, get user from refreshToken
     const payload = isTokenValid(refreshToken);
 
-    console.log('payload:', payload);
     //attach an updated cookie to client
     //reset the expiry time for both access and refresh tokens whenever the client
     //makes an API call that requires authentication
