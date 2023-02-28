@@ -4,11 +4,13 @@ require('express-async-errors');
 const cors = require('cors');
 const corsOptions = {
   origin: true,
-  credentials: true, //included credentials as true
+  credentials: true,
 };
 const express = require('express');
 const app = express();
-app.use(cors(corsOptions));
+app.set('trust proxy', 1);
+// app.use(cors(corsOptions));
+app.use(cors());
 
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
