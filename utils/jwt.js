@@ -21,6 +21,7 @@ const attachCookieToResponse = ({ res, user, refreshToken }) => {
     secure: true,
     signed: true,
     maxAge: oneDay,
+    sameSite: 'none',
   });
 
   res.cookie('refreshToken', refreshTokenJWT, {
@@ -28,6 +29,7 @@ const attachCookieToResponse = ({ res, user, refreshToken }) => {
     secure: true,
     signed: true,
     maxAge: oneMonth,
+    sameSite: 'none',
   });
 };
 
