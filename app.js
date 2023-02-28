@@ -3,7 +3,7 @@ require('express-async-errors');
 
 const cors = require('cors');
 const corsOptions = {
-  origin: '*',
+  origin: true,
   credentials: true, //included credentials as true
 };
 const express = require('express');
