@@ -9,8 +9,7 @@ const corsOptions = {
 const express = require('express');
 const app = express();
 app.set('trust proxy', 1);
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
 
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
