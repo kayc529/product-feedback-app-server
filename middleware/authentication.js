@@ -4,14 +4,18 @@ const { isTokenValid, attachCookieToResponse } = require('../utils/jwt');
 const authenticateUser = async (req, res, next) => {
   const { accessToken, refreshToken } = req.signedCookies;
 
+  console.log('authenticateUser');
   try {
     //if access token is present in the cookie
     //meaning both access and refresh tokens haven't expired
     if (accessToken) {
+      console.log('has access token!');
       const payload = isTokenValid(accessToken);
       req.user = payload.user;
       return next();
     }
+
+    console.log('no access token!');
 
     //if access token is absent, get user from refreshToken
     const payload = isTokenValid(refreshToken);

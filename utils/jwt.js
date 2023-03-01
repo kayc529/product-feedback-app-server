@@ -6,6 +6,7 @@ const createJWT = ({ payload }) => {
 };
 
 const isTokenValid = (token) => {
+  console.log('token:', token);
   return jwt.verify(token, process.env.JWT_SECRET);
 };
 
@@ -21,7 +22,7 @@ const attachCookieToResponse = ({ res, user, refreshToken }) => {
     secure: process.env.NODE_ENV === 'production',
     signed: true,
     maxAge: oneDay,
-    sameSite: 'none',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   });
 
   res.cookie('refreshToken', refreshTokenJWT, {
@@ -29,7 +30,7 @@ const attachCookieToResponse = ({ res, user, refreshToken }) => {
     secure: process.env.NODE_ENV === 'production',
     signed: true,
     maxAge: oneMonth,
-    sameSite: 'none',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   });
 };
 

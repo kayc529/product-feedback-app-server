@@ -39,8 +39,6 @@ const getAllSuggestions = async (req, res) => {
   } else {
     aggregationArr.push({ $sort: { createdAt: -1 } });
   }
-
-  console.log('aggregationArr', aggregationArr);
   let suggestions = await Suggestion.aggregate(aggregationArr);
 
   const count = suggestions.length;
@@ -113,7 +111,10 @@ const updateSuggestion = async (req, res) => {
     throw new NotFoundError(`No memo with id ${id}`);
   }
 
-  if (user.userId !== suggestion.createdBy && user.role !== 'admin') {
+  if (
+    user.userId !== suggestion.createdBy.toString() &&
+    user.role !== 'admin'
+  ) {
     throw new UnauthorizedError('Unauthorized to update suggestion');
   }
 
