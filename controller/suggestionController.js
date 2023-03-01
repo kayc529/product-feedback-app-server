@@ -97,8 +97,11 @@ const getSuggestion = async (req, res) => {
 
 const createSuggestion = async (req, res) => {
   const user = req.user;
-  await Suggestion.create({ ...req.body, createdBy: user.userId });
-  res.status(StatusCodes.CREATED).json({ success: true });
+  const suggestion = await Suggestion.create({
+    ...req.body,
+    createdBy: user.userId,
+  });
+  res.status(StatusCodes.CREATED).json({ success: true, suggestion });
 };
 
 const updateSuggestion = async (req, res) => {

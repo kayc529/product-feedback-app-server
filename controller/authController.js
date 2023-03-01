@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const { attachCookieToResponse } = require('../utils/jwt');
 
 const register = async (req, res) => {
-  const { username, firstname, lastname, email, password } = req.body;
+  const { username, firstname, lastname, email, password, image } = req.body;
   const existingUser = await User.findOne({ email });
 
   if (existingUser) {
@@ -19,6 +19,7 @@ const register = async (req, res) => {
     lastname,
     email,
     password,
+    image: image || '',
     joinedDate: Date.now(),
   });
 
@@ -79,7 +80,7 @@ const logout = async (req, res) => {
 };
 
 const getAllUsers = async (req, res) => {
-  const users = await User.find({}).sort('-createdAt');
+  const users = await User.find({}).sort('-joinedDate');
   res.status(StatusCodes.OK).json({ users });
 };
 
