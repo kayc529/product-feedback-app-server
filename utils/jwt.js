@@ -21,7 +21,6 @@ const attachCookieToResponse = ({ res, user, refreshToken }) => {
     secure: process.env.NODE_ENV === 'production',
     signed: true,
     maxAge: oneDay,
-    domain: 'https://product-feedback-app-server.cyclic.app',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   });
 
@@ -30,7 +29,6 @@ const attachCookieToResponse = ({ res, user, refreshToken }) => {
     secure: process.env.NODE_ENV === 'production',
     signed: true,
     maxAge: oneMonth,
-    domain: 'https://product-feedback-app-server.cyclic.app',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   });
 };
